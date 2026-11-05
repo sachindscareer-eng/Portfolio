@@ -148,7 +148,7 @@
     x: function () { return -travel(); }, ease: 'none',
     scrollTrigger: {
       id: 'skills', trigger: '#skills', start: 'top top', pin: true, scrub: .6, anticipatePin: 1,
-      end: function () { return '+=' + travel() * .8; }, invalidateOnRefresh: true,
+      end: function () { return '+=' + travel() * .65; }, invalidateOnRefresh: true,
       onUpdate: function (st) { gsap.set('#skills-bar', { scaleX: st.progress }); }
     }
   });
@@ -160,7 +160,7 @@
   });
 
   // ----- Character rise for big headings -----
-  ['experience-title', 'work-title', 'contact-title', 'edu__title'].forEach(function (key) {
+  ['experience-title', 'work-title', 'process-title', 'faq-title', 'contact-title', 'edu__title'].forEach(function (key) {
     var s = splits[key];
     gsap.from(s.chars, {
       yPercent: 115, rotate: 6, duration: 1, ease: 'expo.out', stagger: .02,
@@ -186,6 +186,18 @@
     if (next) {
       gsap.to(card, { scale: .95, filter: 'brightness(.72)', ease: 'none', scrollTrigger: { trigger: next, start: 'top 60%', end: 'top 15%', scrub: true } });
     }
+  });
+
+  // ----- How I work: each step rises in and its number fills -----
+  $$('.step').forEach(function (step) {
+    gsap.from(step, { x: 64, autoAlpha: 0, duration: .9, ease: 'expo.out', scrollTrigger: { trigger: step, start: 'top 88%', toggleActions: 'play none none reverse' } });
+    ScrollTrigger.create({ trigger: step, start: 'top 65%', toggleClass: 'is-on' });
+  });
+
+  // ----- FAQ -----
+  gsap.from('.qa', { y: 32, autoAlpha: 0, duration: .7, ease: 'power3.out', stagger: .06, scrollTrigger: { trigger: '.qas', start: 'top 85%', toggleActions: 'play none none reverse' } });
+  $$('.qa').forEach(function (qa) {
+    qa.addEventListener('toggle', function () { ScrollTrigger.refresh(); });
   });
 
   // ----- Contact -----
@@ -259,7 +271,7 @@
   var TAU = Math.PI * 2;
 
   // Scene order. Skill words here match the panels in index.html.
-  var SHAPES = ['globe', 'lens', 'SEO', 'AEO', 'LEADS', 'TOOLS', 'WEB', 'GA4', 'wave', 'pages', 'ring'];
+  var SHAPES = ['globe', 'lens', 'SEO', 'AEO', 'LEADS', 'TOOLS', 'WEB', 'OPS', 'GA4', 'AI', 'wave', 'pages', 'ring'];
   var SPINS = { globe: 1, ring: 1 };
 
   function shapeGlobe() {
@@ -447,12 +459,12 @@
       { p: A.start, seg: 1, x: lens.x, y: lens.y, s: lens.s, a: lens.a },
       { p: A.end, seg: 1, x: lens.x, y: lens.y, s: lens.s, a: lens.a },
       { p: S.start, seg: 2, x: mob ? 0 : .42, y: mob ? .36 : 0, s: wordS, a: wordA },
-      { p: S.end, seg: 7, x: mob ? 0 : .42, y: mob ? .36 : 0, s: wordS, a: wordA, step: true },
-      { p: E.start + vh * .3, seg: 8, x: 0, y: -.45, s: .9, a: .4 },
-      { p: W.start, seg: 8, x: 0, y: -.45, s: .9, a: .4 },
-      { p: W.start + vh * .5, seg: 9, x: mob ? 0 : .3, y: .1, s: .8, a: .3 },
-      { p: W.end - vh * .2, seg: 9, x: mob ? 0 : .3, y: .1, s: .8, a: .3 },
-      { p: C.start + vh * .2, seg: 10, x: mob ? 0 : .62, y: mob ? -.66 : -.1, s: mob ? .55 : .85, a: mob ? .4 : .6 }
+      { p: S.end, seg: 9, x: mob ? 0 : .42, y: mob ? .36 : 0, s: wordS, a: wordA, step: true },
+      { p: E.start + vh * .3, seg: 10, x: 0, y: -.45, s: .9, a: .4 },
+      { p: W.start, seg: 10, x: 0, y: -.45, s: .9, a: .4 },
+      { p: W.start + vh * .5, seg: 11, x: mob ? 0 : -.56, y: mob ? 0 : -.3, s: mob ? .8 : .5, a: mob ? .14 : .4 },
+      { p: C.start - vh * .6, seg: 11, x: mob ? 0 : -.56, y: mob ? 0 : -.3, s: mob ? .8 : .5, a: mob ? .14 : .4 },
+      { p: C.start + vh * .2, seg: 12, x: mob ? 0 : .62, y: mob ? -.66 : -.1, s: mob ? .55 : .85, a: mob ? .4 : .6 }
     ];
   }
   ScrollTrigger.addEventListener('refresh', buildKeys);
@@ -526,12 +538,13 @@
         upload(n, build(SHAPES[n]));
         n++;
         if (n === 2) { ready = 2; buildKeys(); }
-        if (n < SHAPES.length) setTimeout(next, 16);
-        else ScrollTrigger.refresh();
+        // Later shapes are only needed once you scroll, so build them in idle gaps
+        if (n < SHAPES.length) setTimeout(next, n < 3 ? 60 : 350);
       })();
     });
   }
-  if (document.readyState === 'complete') startStage();
-  else addEventListener('load', startStage);
+  function queueStage() { setTimeout(startStage, 300); }
+  if (document.readyState === 'complete') queueStage();
+  else addEventListener('load', queueStage);
 
 })();

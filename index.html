@@ -66,7 +66,9 @@
       "url": "https://YOUR-DOMAIN.com/",
       "image": "https://YOUR-DOMAIN.com/assets/sachin-yadav.jpg",
       "email": "mailto:sachin.ds.career@gmail.com",
-      "sameAs": ["https://www.linkedin.com/in/sachin-yadav-3386b4429/"],
+      "sameAs": [
+        "https://www.linkedin.com/in/sachin-yadav-3386b4429/"
+      ],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Noida",
@@ -77,7 +79,10 @@
         "@type": "CollegeOrUniversity",
         "name": "ABES Engineering College, Ghaziabad"
       },
-      "knowsLanguage": ["English", "Hindi"],
+      "knowsLanguage": [
+        "English",
+        "Hindi"
+      ],
       "knowsAbout": [
         "Search Engine Optimization",
         "Technical SEO",
@@ -93,7 +98,17 @@
         "WordPress",
         "Google Analytics 4",
         "Google Tag Manager",
-        "Power BI"
+        "Power BI",
+        "Competitor Analysis",
+        "Internal Linking",
+        "Content Optimization",
+        "B2B Marketing",
+        "Google Business Profile",
+        "Conversion Tracking",
+        "Cloudflare",
+        "Zoho CRM",
+        "SQL",
+        "Python"
       ]
     },
     {
@@ -102,7 +117,71 @@
       "url": "https://YOUR-DOMAIN.com/",
       "name": "Sachin Yadav",
       "inLanguage": "en",
-      "publisher": { "@id": "https://YOUR-DOMAIN.com/#person" }
+      "publisher": {
+        "@id": "https://YOUR-DOMAIN.com/#person"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://YOUR-DOMAIN.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are you available right now?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. I am an immediate joiner and open to remote, day-shift roles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where are you based?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Noida, Uttar Pradesh, India."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What kind of companies have you worked with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B2B technology websites. I have worked remotely as a Digital Marketing Executive at HireScoreAI and in a hybrid role as an SEO Executive at MediaSearchGroup."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are AEO and GEO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization) make content easier for AI-driven search to find and use. I do this with schema markup, structured content, clear answers and FAQ sections."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you handle both marketing and the website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Along with SEO, social media and email, I build WordPress pages with custom PHP templates and manage releases, Cloudflare, DNS/SSL and caching."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which tools do you use for SEO and reporting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Semrush, Ahrefs, Ubersuggest, Google Search Console and PageSpeed Insights for SEO; GA4, Google Tag Manager, Excel and Power BI for reporting."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which languages do you work in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "English and Hindi."
+          }
+        }
+      ]
     }
   ]
 }
@@ -360,7 +439,7 @@ html:not(.fx) .marquee { padding-inline: var(--gutter); }
 .fx .panel { flex: none; display: flex; align-items: flex-end; width: 100vw; height: 100%; padding: 0 var(--gutter) 48px; }
 .fx .panel__in { width: 100%; max-width: 1280px; margin-inline: auto; }
 .fx .panel__box { max-width: 520px; }
-.fx .panel .tag { font-size: .9375rem; padding: 6px 12px; background: rgba(14, 27, 46, .8); }
+.fx .panel .tag { font-size: .875rem; padding: 4px 10px; background: rgba(14, 27, 46, .8); }
 .skills__bar { display: none; }
 .fx .skills__bar { display: block; position: absolute; z-index: 2; left: var(--gutter); right: var(--gutter); bottom: 20px; height: 2px; background: var(--line); }
 .skills__bar span { display: block; height: 100%; background: var(--grad); transform: scaleX(0); transform-origin: 0 50%; }
@@ -394,13 +473,13 @@ html:not(.fx) .panel { padding: 24px; border: 1px solid var(--line); border-radi
 /* ---------- Work: stacked cards ---------- */
 .work__lead { margin-top: 16px; color: var(--muted); max-width: 56ch; font-size: 1.0625rem; }
 .cases { display: grid; gap: 24px; margin-top: 48px; }
-.case { position: sticky; top: calc(88px + var(--i, 0) * 16px); overflow: hidden; display: grid; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--solid); transform-origin: 50% 0; box-shadow: 0 -16px 48px rgba(0, 0, 0, .45); }
+.case { position: sticky; top: calc(84px + var(--i, 0) * 10px); overflow: hidden; display: grid; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--solid); transform-origin: 50% 0; box-shadow: 0 -16px 48px rgba(0, 0, 0, .45); }
 .case__body { display: flex; flex-direction: column; padding: 24px; }
 .case__title { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem); line-height: 1.1; }
 .case__summary { margin-top: 16px; color: var(--muted); }
 .case .tags { margin-top: auto; padding-top: 24px; }
 @media (min-width: 768px) {
-  .case { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); min-height: 440px; }
+  .case { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); min-height: 380px; }
   .case__body { padding: 40px; }
 }
 
@@ -421,9 +500,44 @@ html:not(.fx) .panel { padding: 24px; border: 1px solid var(--line); border-radi
 .viz--page i:nth-child(2) { grid-column: 1 / -1; background: linear-gradient(100deg, rgba(79, 179, 255, .5), rgba(94, 234, 212, .4)); }
 @keyframes block { 0% { opacity: 0; transform: translateY(16px) scale(.96); } 16%, 86% { opacity: 1; transform: none; } 100% { opacity: 0; } }
 
+/* ---------- How I work ---------- */
+.steps { display: grid; gap: 16px; }
+.step { display: grid; grid-template-columns: 72px 1fr; gap: 16px; align-items: start; padding: 24px; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--surface); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.step__n { font-size: 3.5rem; font-weight: 800; line-height: 1; letter-spacing: -.04em; color: var(--blue); }
+.fx .step__n { color: transparent; -webkit-text-stroke: 1.5px var(--blue); transition: color .5s ease; }
+.fx .step.is-on .step__n { color: var(--mint); -webkit-text-stroke-color: var(--mint); }
+.step__title { font-size: 1.375rem; }
+.step__text { margin-top: 8px; color: var(--muted); }
+
+/* ---------- FAQ ---------- */
+.qas { display: grid; gap: 8px; }
+.qa { border: 1px solid var(--line); border-radius: 16px; background: var(--surface); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: border-color .2s ease; }
+.qa[open] { border-color: var(--mint); }
+.qa summary { position: relative; display: block; padding: 16px 56px 16px 24px; font-weight: 600; font-size: 1.0625rem; cursor: pointer; list-style: none; }
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary::before, .qa summary::after { content: ""; position: absolute; right: 24px; top: 50%; width: 14px; height: 2px; background: var(--mint); transition: transform .3s ease; }
+.qa summary::after { transform: rotate(90deg); }
+.qa[open] summary::after { transform: rotate(0); }
+.qa p { padding: 0 24px 24px; color: var(--muted); animation: qa-in .4s ease; }
+@keyframes qa-in { from { opacity: 0; transform: translateY(-8px); } }
+
+/* More Work visuals */
+.viz--bars { display: flex; align-items: flex-end; gap: 12px; }
+.viz--bars i { flex: 1; height: var(--h); border-radius: 6px 6px 0 0; background: linear-gradient(180deg, var(--mint), var(--blue)); transform-origin: 50% 100%; animation: bar 4s ease infinite; animation-delay: calc(var(--n) * .15s); }
+@keyframes bar { 0% { transform: scaleY(.08); } 30%, 85% { transform: scaleY(1); } 100% { transform: scaleY(.08); } }
+.viz--cal { display: grid; grid-template-columns: repeat(7, 1fr); align-content: center; gap: 8px; }
+.viz--cal i { aspect-ratio: 1; max-height: 40px; border-radius: 6px; background: var(--chip); animation: cell 5s ease infinite; animation-delay: calc(var(--n) * .22s); }
+@keyframes cell { 0%, 100% { background: var(--chip); } 12%, 55% { background: var(--mint); } }
+.viz--ping { display: grid; place-items: center; }
+.viz--ping .icon { position: relative; width: 44px; height: 44px; color: var(--mint); }
+.viz--ping span { position: absolute; left: 50%; top: 50%; width: 72px; height: 72px; margin: -36px 0 0 -36px; border: 1.5px solid var(--mint); border-radius: 50%; animation: ring 3s ease-out infinite; }
+.viz--ping span + span { animation-delay: 1.5s; }
+@keyframes ring { from { transform: scale(.6); opacity: .9; } to { transform: scale(2.6); opacity: 0; } }
+
 /* ---------- Education ---------- */
 .edu { display: grid; gap: 16px; }
 .edu__title { font-size: clamp(1.75rem, 1rem + 3.4vw, 4rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+.edu__lang { margin-top: 8px; }
 .edu__meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 16px; color: var(--muted); font-size: 1.125rem; }
 
 /* ---------- Contact ---------- */
@@ -560,45 +674,35 @@ html:not(.fx) .panel { padding: 24px; border: 1px solid var(--line); border-radi
     <div class="panels" id="panels">
       <article class="panel"><div class="panel__in"><div class="panel__box">
         <h3 class="panel__title">SEO</h3>
-        <ul class="tags">
-          <li class="tag">Technical SEO</li><li class="tag">On-Page</li><li class="tag">Off-Page</li>
-          <li class="tag">Keyword &amp; Intent Research</li><li class="tag">Site Audits</li><li class="tag">Backlinks</li>
-        </ul>
+        <ul class="tags"><li class="tag">Technical SEO</li><li class="tag">On-Page SEO</li><li class="tag">Off-Page SEO</li><li class="tag">Keyword &amp; Search-Intent Research</li><li class="tag">Competitor Analysis</li><li class="tag">Site Audits</li><li class="tag">Internal Linking</li><li class="tag">Indexing</li><li class="tag">Backlink Building</li><li class="tag">Content Optimization</li></ul>
       </div></div></article>
       <article class="panel"><div class="panel__in"><div class="panel__box">
         <h3 class="panel__title">AI Search</h3>
-        <ul class="tags">
-          <li class="tag">AEO</li><li class="tag">GEO</li><li class="tag">Schema Markup / JSON-LD</li><li class="tag">FAQ Content</li>
-        </ul>
+        <ul class="tags"><li class="tag">AEO (Answer Engine Optimization)</li><li class="tag">GEO (Generative Engine Optimization)</li><li class="tag">Schema Markup / JSON-LD</li><li class="tag">FAQ Content</li></ul>
       </div></div></article>
       <article class="panel"><div class="panel__in"><div class="panel__box">
         <h3 class="panel__title">Marketing</h3>
-        <ul class="tags">
-          <li class="tag">Social Media Calendar</li><li class="tag">Email Newsletters</li><li class="tag">Lead Generation</li>
-          <li class="tag">Landing Pages</li><li class="tag">Google Business Profile</li>
-          <li class="tag">Paid Campaign Support (Google Ads, LinkedIn Ads)</li>
-        </ul>
+        <ul class="tags"><li class="tag">B2B Marketing</li><li class="tag">Social Media Calendar &amp; Scheduling</li><li class="tag">Email Newsletters</li><li class="tag">Lead Generation</li><li class="tag">Landing Pages</li><li class="tag">Google Business Profile</li><li class="tag">Paid Campaign Support (Google Ads, LinkedIn Ads)</li></ul>
       </div></div></article>
       <article class="panel"><div class="panel__in"><div class="panel__box">
-        <h3 class="panel__title">Tools</h3>
-        <ul class="tags">
-          <li class="tag">Semrush</li><li class="tag">Ahrefs</li><li class="tag">Ubersuggest</li>
-          <li class="tag">Google Search Console</li><li class="tag">PageSpeed Insights</li>
-        </ul>
+        <h3 class="panel__title">SEO Tools</h3>
+        <ul class="tags"><li class="tag">Semrush</li><li class="tag">Ahrefs</li><li class="tag">Ubersuggest</li><li class="tag">Google Search Console</li><li class="tag">PageSpeed Insights</li></ul>
       </div></div></article>
       <article class="panel"><div class="panel__in"><div class="panel__box">
-        <h3 class="panel__title">Web</h3>
-        <ul class="tags">
-          <li class="tag">WordPress</li><li class="tag">HTML5</li><li class="tag">CSS3</li><li class="tag">JavaScript</li>
-          <li class="tag">PHP templates</li><li class="tag">Cloudflare</li><li class="tag">WP Rocket</li>
-        </ul>
+        <h3 class="panel__title">Web Development</h3>
+        <ul class="tags"><li class="tag">WordPress</li><li class="tag">Custom PHP Templates</li><li class="tag">HTML5</li><li class="tag">CSS3</li><li class="tag">JavaScript</li><li class="tag">MySQL</li><li class="tag">Responsive Design</li></ul>
       </div></div></article>
       <article class="panel"><div class="panel__in"><div class="panel__box">
-        <h3 class="panel__title">Analytics &amp; AI</h3>
-        <ul class="tags">
-          <li class="tag">GA4</li><li class="tag">Google Tag Manager</li><li class="tag">Power BI</li><li class="tag">Excel</li>
-          <li class="tag">Zoho CRM</li><li class="tag">Canva</li><li class="tag">ChatGPT</li><li class="tag">Claude</li>
-        </ul>
+        <h3 class="panel__title">Website Ops</h3>
+        <ul class="tags"><li class="tag">Git/GitHub</li><li class="tag">Staging-to-Production</li><li class="tag">Cloudflare</li><li class="tag">DNS/SSL</li><li class="tag">WP Rocket</li><li class="tag">Wordfence</li><li class="tag">Backups</li></ul>
+      </div></div></article>
+      <article class="panel"><div class="panel__in"><div class="panel__box">
+        <h3 class="panel__title">Analytics</h3>
+        <ul class="tags"><li class="tag">GA4</li><li class="tag">Google Tag Manager</li><li class="tag">Conversion Tracking</li><li class="tag">Power BI</li><li class="tag">Excel</li><li class="tag">SQL</li><li class="tag">Python</li></ul>
+      </div></div></article>
+      <article class="panel"><div class="panel__in"><div class="panel__box">
+        <h3 class="panel__title">CRM, Design &amp; AI</h3>
+        <ul class="tags"><li class="tag">Zoho CRM</li><li class="tag">Canva</li><li class="tag">Video Editing</li><li class="tag">ChatGPT</li><li class="tag">Claude</li><li class="tag">OpenAI Codex</li></ul>
       </div></div></article>
     </div>
     <div class="skills__bar" aria-hidden="true"><span id="skills-bar"></span></div>
@@ -613,19 +717,26 @@ html:not(.fx) .panel { padding: 24px; border: 1px solid var(--line); border-radi
           <h3 class="job__title">Digital Marketing Executive</h3>
           <p class="job__meta"><span><span class="job__company">HireScoreAI</span>, Remote</span><span>Jul 2025 – Mar 2026</span></p>
           <ul class="job__list">
-            <li>Built and maintained WordPress product, solution and case-study pages</li>
-            <li>Executed technical and on-page SEO; ran audits with Semrush, Ahrefs and Ubersuggest</li>
-            <li>Implemented schema markup and FAQ content for AI search (AEO/GEO)</li>
-            <li>Managed social media calendar, email newsletters and Zoho CRM email workflows</li>
-            <li>Improved reporting efficiency by <strong>30%</strong> with streamlined GA4 / Power BI reporting</li>
+            <li>Developed and maintained WordPress product, solution and case-study pages using HTML, CSS, JavaScript and custom PHP templates; fixed responsiveness and front-end issues across devices</li>
+            <li>Executed technical and on-page SEO: keyword and search-intent research, metadata, internal linking, indexing reviews and content optimization</li>
+            <li>Ran site audits, competitor and backlink analysis using Semrush, Ahrefs and Ubersuggest; turned findings into prioritized fix lists</li>
+            <li>Implemented schema markup (JSON-LD) and structured content with clear answers and FAQ sections for AI-driven search (AEO/GEO) and rich results</li>
+            <li>Planned and scheduled social media posts through a content calendar, and created and sent email newsletters for B2B campaigns</li>
+            <li>Supported B2B digital campaigns and Zoho CRM email workflows; aligned landing pages and conversion tracking with lead-generation goals</li>
+            <li>Managed staging-to-production releases using Git/GitHub, performed cross-device QA and incorporated stakeholder feedback before go-live</li>
+            <li>Maintained website security and performance using Cloudflare, DNS/SSL, Wordfence, WP Rocket caching and technical troubleshooting</li>
+            <li>Analyzed traffic, CTR, conversions and campaign performance in GA4, Search Console, Excel and Power BI; improved reporting efficiency by <strong>30%</strong></li>
+            <li>Used AI tools (ChatGPT, Claude, OpenAI Codex, Canva) to speed up website updates, debugging, creatives and content production</li>
           </ul>
         </li>
         <li class="job">
           <h3 class="job__title">Search Engine Optimization Executive</h3>
           <p class="job__meta"><span><span class="job__company">MediaSearchGroup</span>, Hybrid</span><span>Nov 2024 – May 2025</span></p>
           <ul class="job__list">
-            <li>Keyword research, meta/heading/URL optimization and internal linking</li>
-            <li>Backlink building, business listings, Google Business Profile updates</li>
+            <li>Conducted keyword research and analysis to identify target keywords and improve search rankings</li>
+            <li>Optimized meta titles, meta descriptions, headings, URLs and internal linking across website pages</li>
+            <li>Supported off-page SEO through backlink building, business listings, directory submissions and guest posting</li>
+            <li>Created and updated Google Business Profile and other local listings to keep business information accurate and consistent</li>
           </ul>
         </li>
       </ol>
@@ -673,7 +784,53 @@ html:not(.fx) .panel { padding: 24px; border: 1px solid var(--line); border-radi
             <ul class="tags"><li class="tag">WordPress</li><li class="tag">PHP templates</li><li class="tag">Git/GitHub</li></ul>
           </div>
         </article>
+        <article class="case" style="--i:3">
+          <div class="viz viz--bars" aria-hidden="true"><i style="--h:38%;--n:0"></i><i style="--h:62%;--n:1"></i><i style="--h:48%;--n:2"></i><i style="--h:80%;--n:3"></i><i style="--h:96%;--n:4"></i></div>
+          <div class="case__body">
+            <h3 class="case__title">Reporting and analytics</h3>
+            <p class="case__summary">Analyzed traffic, CTR, conversions and campaign performance, and streamlined reporting workflows to improve reporting efficiency by 30%.</p>
+            <ul class="tags"><li class="tag">GA4</li><li class="tag">Search Console</li><li class="tag">Excel</li><li class="tag">Power BI</li></ul>
+          </div>
+        </article>
+        <article class="case" style="--i:4">
+          <div class="viz viz--cal" aria-hidden="true"><i style="--n:0"></i><i style="--n:5"></i><i style="--n:2"></i><i style="--n:9"></i><i style="--n:3"></i><i style="--n:12"></i><i style="--n:6"></i><i style="--n:1"></i><i style="--n:10"></i><i style="--n:4"></i><i style="--n:13"></i><i style="--n:7"></i><i style="--n:11"></i><i style="--n:8"></i></div>
+          <div class="case__body">
+            <h3 class="case__title">Social and email campaigns</h3>
+            <p class="case__summary">Planned social posts through a content calendar, sent email newsletters and supported Zoho CRM email workflows for B2B campaigns.</p>
+            <ul class="tags"><li class="tag">Zoho CRM</li><li class="tag">Canva</li><li class="tag">Email Newsletters</li></ul>
+          </div>
+        </article>
+        <article class="case" style="--i:5">
+          <div class="viz viz--ping" aria-hidden="true"><span></span><span></span><svg class="icon" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+          <div class="case__body">
+            <h3 class="case__title">Website security and performance</h3>
+            <p class="case__summary">Maintained security and speed with Cloudflare, DNS/SSL, Wordfence and WP Rocket caching, and handled technical troubleshooting.</p>
+            <ul class="tags"><li class="tag">Cloudflare</li><li class="tag">Wordfence</li><li class="tag">WP Rocket</li></ul>
+          </div>
+        </article>
+        <article class="case" style="--i:6">
+          <div class="viz viz--ping" aria-hidden="true"><span></span><span></span><svg class="icon" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div class="case__body">
+            <h3 class="case__title">Off-page SEO and local listings</h3>
+            <p class="case__summary">Built backlinks through directory submissions and guest posting, and kept Google Business Profile and local listings accurate.</p>
+            <ul class="tags"><li class="tag">Google Business Profile</li><li class="tag">Backlinks</li><li class="tag">Guest Posting</li></ul>
+          </div>
+        </article>
       </div>
+    </div>
+  </section>
+
+  <!-- EDIT: HOW I WORK -->
+  <section class="section" id="process" aria-labelledby="process-title">
+    <div class="wrap exp">
+      <h2 class="title" id="process-title" data-split>How I work</h2>
+      <ol class="steps">
+        <li class="step"><span class="step__n" aria-hidden="true">1</span><div><h3 class="step__title">Audit</h3><p class="step__text">Run site audits, competitor research and backlink analysis to see where a site stands.</p></div></li>
+        <li class="step"><span class="step__n" aria-hidden="true">2</span><div><h3 class="step__title">Prioritize</h3><p class="step__text">Turn the findings into a prioritized fix list for technical and content issues.</p></div></li>
+        <li class="step"><span class="step__n" aria-hidden="true">3</span><div><h3 class="step__title">Build</h3><p class="step__text">Make the changes: WordPress pages, metadata, schema markup and FAQ content.</p></div></li>
+        <li class="step"><span class="step__n" aria-hidden="true">4</span><div><h3 class="step__title">Release</h3><p class="step__text">Move work from staging to production with cross-device QA and stakeholder feedback.</p></div></li>
+        <li class="step"><span class="step__n" aria-hidden="true">5</span><div><h3 class="step__title">Measure</h3><p class="step__text">Track traffic, CTR and conversions in GA4, Search Console and Power BI.</p></div></li>
+      </ol>
     </div>
   </section>
 
@@ -683,6 +840,23 @@ html:not(.fx) .panel { padding: 24px; border: 1px solid var(--line); border-radi
       <h2 class="edu__meta" id="education-title" style="font-weight:600;letter-spacing:0">Education</h2>
       <h3 class="edu__title" data-split>B.Tech, Information Technology</h3>
       <p class="edu__meta"><span>ABES Engineering College, Ghaziabad</span><span>2020 – 2024</span></p>
+      <p class="edu__meta edu__lang"><span>Languages: English, Hindi</span></p>
+    </div>
+  </section>
+
+  <!-- EDIT: FAQ (keep the answers in sync with FAQPage in the JSON-LD at the top) -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="wrap exp">
+      <h2 class="title" id="faq-title" data-split>FAQ</h2>
+      <div class="qas">
+        <details class="qa"><summary>Are you available right now?</summary><p>Yes. I am an immediate joiner and open to remote, day-shift roles.</p></details>
+        <details class="qa"><summary>Where are you based?</summary><p>Noida, Uttar Pradesh, India.</p></details>
+        <details class="qa"><summary>What kind of companies have you worked with?</summary><p>B2B technology websites. I have worked remotely as a Digital Marketing Executive at HireScoreAI and in a hybrid role as an SEO Executive at MediaSearchGroup.</p></details>
+        <details class="qa"><summary>What are AEO and GEO?</summary><p>AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization) make content easier for AI-driven search to find and use. I do this with schema markup, structured content, clear answers and FAQ sections.</p></details>
+        <details class="qa"><summary>Can you handle both marketing and the website?</summary><p>Yes. Along with SEO, social media and email, I build WordPress pages with custom PHP templates and manage releases, Cloudflare, DNS/SSL and caching.</p></details>
+        <details class="qa"><summary>Which tools do you use for SEO and reporting?</summary><p>Semrush, Ahrefs, Ubersuggest, Google Search Console and PageSpeed Insights for SEO; GA4, Google Tag Manager, Excel and Power BI for reporting.</p></details>
+        <details class="qa"><summary>Which languages do you work in?</summary><p>English and Hindi.</p></details>
+      </div>
     </div>
   </section>
 
