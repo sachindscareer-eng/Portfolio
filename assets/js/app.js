@@ -50,7 +50,7 @@
       var el = $(id);
       if (!el) return;
       e.preventDefault();
-      var y = id === '#top' ? 0 : el.getBoundingClientRect().top + scrollY - (id === '#skills' || id === '#about' ? 0 : 88);
+      var y = id === '#top' ? 0 : el.getBoundingClientRect().top + scrollY - (id === '#about' ? 0 : 88);
       var st = ScrollTrigger.getById(id.slice(1));
       if (st && st.pin) y = st.start + 2;
       if (lenis) lenis.scrollTo(y, { duration: 1.4 }); else scrollTo(0, y);
@@ -86,9 +86,13 @@
   var seen = root.classList.contains('seen');
   var stage = { intro: 0 };
   var heroChars = splits['hero-title'].chars;
+  var lite = innerWidth < 768;
   gsap.set(heroChars, { yPercent: 115, rotate: 8 });
-  gsap.set('.hero__sub, .hero__ctas', { autoAlpha: 0, y: 28 });
-  gsap.set('.chip', { autoAlpha: 0, y: 40, scale: .96 });
+  gsap.set('.hero__title', { visibility: 'visible' });
+  if (!lite) {
+    gsap.set('.hero__sub, .hero__ctas', { autoAlpha: 0, y: 28 });
+    gsap.set('.chip', { autoAlpha: 0, y: 40, scale: .96 });
+  }
   var intro = gsap.timeline();
   if (!seen) {
     intro.to('.pre__bar', { scaleX: 1, duration: .75, ease: 'power2.inOut' })
@@ -97,10 +101,11 @@
          .set('.pre', { display: 'none' });
     try { sessionStorage.setItem('seen', '1'); } catch (e) {}
   }
-  intro.to(heroChars, { yPercent: 0, rotate: 0, duration: 1, ease: 'expo.out', stagger: .018 }, seen ? 0 : '-=.45')
-       .to(stage, { intro: 1, duration: 2.2, ease: 'expo.out' }, '<-.2')
-       .to('.hero__sub, .hero__ctas', { autoAlpha: 1, y: 0, duration: .8, ease: 'power3.out', stagger: .1 }, '<.35')
-       .to('.chip', { autoAlpha: 1, y: 0, scale: 1, duration: .9, ease: 'expo.out' }, '<.1');
+  intro.to(heroChars, { yPercent: 0, rotate: 0, duration: 1, ease: 'expo.out', stagger: .018 }, seen ? 0 : '-=.45');
+  if (!lite) {
+    intro.to('.hero__sub, .hero__ctas', { autoAlpha: 1, y: 0, duration: .8, ease: 'power3.out', stagger: .1 }, '<.15')
+         .to('.chip', { autoAlpha: 1, y: 0, scale: 1, duration: .9, ease: 'expo.out' }, '<.1');
+  }
 
   // Hero drifts away as you scroll
   gsap.to('.hero__copy', { yPercent: -18, autoAlpha: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 35%', scrub: true } });
@@ -114,12 +119,13 @@
   copy.setAttribute('aria-hidden', 'true');
   mq.appendChild(copy);
   var mqX = 0;
+  var mqW = list.offsetWidth; // cached: reading layout every frame is expensive
+  ScrollTrigger.addEventListener('refresh', function () { mqW = list.offsetWidth; });
   var mqLists = [list, copy];
   gsap.ticker.add(function () {
     var v = lenis ? lenis.velocity : 0;
     mqX -= 1 + Math.abs(v) * .35;
-    var w = list.offsetWidth;
-    if (w && mqX <= -w) mqX += w;
+    if (mqW && mqX <= -mqW) mqX += mqW;
     var skew = clamp(v * .35, -14, 14);
     mqLists.forEach(function (el) { el.style.transform = 'translate3d(' + mqX + 'px,0,0) skewX(' + (-skew) + 'deg)'; });
   });
@@ -141,26 +147,20 @@
     scrollTrigger: { id: 'about', trigger: '#about', start: 'top top', end: '+=130%', pin: true, scrub: .4, anticipatePin: 1 }
   });
 
-  // ----- Skills: pinned horizontal scene -----
-  var track = $('#panels');
-  var travel = function () { return track.scrollWidth - innerWidth; };
-  var slide = gsap.to(track, {
-    x: function () { return -travel(); }, ease: 'none',
-    scrollTrigger: {
-      id: 'skills', trigger: '#skills', start: 'top top', pin: true, scrub: .6, anticipatePin: 1,
-      end: function () { return '+=' + travel() * .65; }, invalidateOnRefresh: true,
-      onUpdate: function (st) { gsap.set('#skills-bar', { scaleX: st.progress }); }
-    }
-  });
-  $$('.panel').forEach(function (panel) {
-    gsap.from($$('.panel__title, .tag', panel), {
-      y: 48, autoAlpha: 0, duration: .7, ease: 'power3.out', stagger: .045,
-      scrollTrigger: { trigger: panel, containerAnimation: slide, start: 'left 62%', toggleActions: 'play none none reverse' }
+  // ----- Services strip -----
+  gsap.from('.services__list li', { y: 32, autoAlpha: 0, duration: .8, ease: 'power3.out', stagger: .1, scrollTrigger: { trigger: '.services', start: 'top 90%', toggleActions: 'play none none reverse' } });
+
+  // ----- Skills: cards rise in row by row -----
+  ScrollTrigger.create({ id: 'skills', trigger: '#skills', start: 'top top', end: 'bottom bottom' });
+  $$('.skill-card').forEach(function (card, i) {
+    gsap.from(card, {
+      y: 64, autoAlpha: 0, duration: .9, ease: 'expo.out', delay: (i % 3) * .09, clearProps: 'transform',
+      scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none reverse' }
     });
   });
 
   // ----- Character rise for big headings -----
-  ['experience-title', 'work-title', 'process-title', 'faq-title', 'contact-title', 'edu__title'].forEach(function (key) {
+  ['skills-title', 'experience-title', 'work-title', 'process-title', 'faq-title', 'contact-title', 'edu__title'].forEach(function (key) {
     var s = splits[key];
     gsap.from(s.chars, {
       yPercent: 115, rotate: 6, duration: 1, ease: 'expo.out', stagger: .02,
@@ -208,7 +208,7 @@
   ScrollTrigger.create({ start: 0, end: 'max', onUpdate: function (s) { gsap.set('.progress', { scaleX: s.progress }); } });
   $$('#nav-links a').forEach(function (a) {
     ScrollTrigger.create({
-      trigger: a.getAttribute('href'), start: 'top 50%', end: function (self) { return self.trigger.id === 'skills' || self.trigger.id === 'about' ? '+=' + (ScrollTrigger.getById(self.trigger.id).end - ScrollTrigger.getById(self.trigger.id).start + innerHeight / 2) : 'bottom 50%'; },
+      trigger: a.getAttribute('href'), start: 'top 50%', end: function (self) { return self.trigger.id === 'about' ? '+=' + (ScrollTrigger.getById('about').end - ScrollTrigger.getById('about').start + innerHeight / 2) : 'bottom 50%'; },
       toggleClass: { targets: a, className: 'is-active' }
     });
   });
@@ -244,6 +244,13 @@
       });
       el.addEventListener('pointerleave', function () { mx(0); my(0); });
     });
+    $$('.skill-card').forEach(function (el) {
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
     var glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $$('.nav__links a, .footer__links a').forEach(function (a) {
       var label = a.textContent;
@@ -270,8 +277,8 @@
   var COUNT = innerWidth < 768 ? 9000 : 24000;
   var TAU = Math.PI * 2;
 
-  // Scene order. Skill words here match the panels in index.html.
-  var SHAPES = ['globe', 'lens', 'SEO', 'AEO', 'LEADS', 'TOOLS', 'WEB', 'OPS', 'GA4', 'AI', 'wave', 'pages', 'ring'];
+  // Scene order, top of the page to the bottom.
+  var SHAPES = ['globe', 'lens', 'SEO AI WEB', 'wave', 'pages', 'ring'];
   var SPINS = { globe: 1, ring: 1 };
 
   function shapeGlobe() {
@@ -448,8 +455,9 @@
   var keys = [];
   function buildKeys() {
     var vh = innerHeight, mob = innerWidth < 960;
-    var wordS = mob ? Math.min(.9, aspect * 1.3) : .86;
+    var wordS = mob ? Math.min(.9, aspect * 1.3) : .62;
     var wordA = mob ? .8 : .62;
+    var word = { x: mob ? 0 : .5, y: mob ? .34 : .6 };
     var get = function (id) { return ScrollTrigger.getById(id); };
     var A = get('about'), S = get('skills'), E = get('experience'), W = get('work'), C = get('contact');
     if (!A || !S || !E || !W || !C) return;
@@ -458,13 +466,14 @@
       { p: 0, seg: 0, x: mob ? 0 : .5, y: mob ? -.5 : .08, s: mob ? .8 : 1, a: mob ? .26 : .85 },
       { p: A.start, seg: 1, x: lens.x, y: lens.y, s: lens.s, a: lens.a },
       { p: A.end, seg: 1, x: lens.x, y: lens.y, s: lens.s, a: lens.a },
-      { p: S.start, seg: 2, x: mob ? 0 : .42, y: mob ? .36 : 0, s: wordS, a: wordA },
-      { p: S.end, seg: 9, x: mob ? 0 : .42, y: mob ? .36 : 0, s: wordS, a: wordA, step: true },
-      { p: E.start + vh * .3, seg: 10, x: 0, y: -.45, s: .9, a: .4 },
-      { p: W.start, seg: 10, x: 0, y: -.45, s: .9, a: .4 },
-      { p: W.start + vh * .5, seg: 11, x: mob ? 0 : -.56, y: mob ? 0 : -.3, s: mob ? .8 : .5, a: mob ? .14 : .4 },
-      { p: C.start - vh * .6, seg: 11, x: mob ? 0 : -.56, y: mob ? 0 : -.3, s: mob ? .8 : .5, a: mob ? .14 : .4 },
-      { p: C.start + vh * .2, seg: 12, x: mob ? 0 : .62, y: mob ? -.66 : -.1, s: mob ? .55 : .85, a: mob ? .4 : .6 }
+      { p: S.start, seg: 2, x: word.x, y: word.y, s: wordS, a: wordA },
+      { p: S.start + vh * .45, seg: 2, x: word.x, y: word.y + .9, s: wordS, a: 0 },
+      { p: Math.max(S.start + vh * .5, E.start - vh * .1), seg: 3, x: 0, y: -.45, s: .9, a: 0 },
+      { p: Math.max(S.start + vh * .6, E.start + vh * .3), seg: 3, x: 0, y: -.45, s: .9, a: .4 },
+      { p: W.start, seg: 3, x: 0, y: -.45, s: .9, a: .4 },
+      { p: W.start + vh * .5, seg: 4, x: mob ? 0 : -.56, y: mob ? 0 : -.3, s: mob ? .8 : .5, a: mob ? .14 : .4 },
+      { p: C.start - vh * .6, seg: 4, x: mob ? 0 : -.56, y: mob ? 0 : -.3, s: mob ? .8 : .5, a: mob ? .14 : .4 },
+      { p: C.start + vh * .2, seg: 5, x: mob ? 0 : .62, y: mob ? -.66 : -.1, s: mob ? .55 : .85, a: mob ? .4 : .6 }
     ];
   }
   ScrollTrigger.addEventListener('refresh', buildKeys);
@@ -537,13 +546,26 @@
       (function next() {
         upload(n, build(SHAPES[n]));
         n++;
-        if (n === 2) { ready = 2; buildKeys(); }
+        if (n === 2) { ready = 2; buildKeys(); gsap.to(stage, { intro: 1, duration: 2.2, ease: 'expo.out' }); }
         // Later shapes are only needed once you scroll, so build them in idle gaps
         if (n < SHAPES.length) setTimeout(next, n < 3 ? 60 : 350);
       })();
     });
   }
-  function queueStage() { setTimeout(startStage, 300); }
+  // On phones the stage waits for the first touch or scroll (5s at most), keeping first load light
+  function queueStage() {
+    if (!lite) { setTimeout(startStage, 300); return; }
+    var started = false;
+    var events = ['touchstart', 'pointerdown', 'scroll', 'wheel'];
+    function go() {
+      if (started) return;
+      started = true;
+      events.forEach(function (e) { removeEventListener(e, go); });
+      startStage();
+    }
+    events.forEach(function (e) { addEventListener(e, go, { passive: true }); });
+    setTimeout(go, 5000);
+  }
   if (document.readyState === 'complete') queueStage();
   else addEventListener('load', queueStage);
 

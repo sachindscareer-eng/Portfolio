@@ -12,8 +12,8 @@ The Work section uses anonymous summaries, with no company data or screenshots.
 2. Turn on GA4: search for `GA4` in `index.html` and follow the note.
 3. After launch, submit `sitemap.xml` in Search Console and test the page in the Rich Results Test.
 
-## Change the particle words
-The words in the Skills scene are in the `SHAPES` list near the middle of `assets/js/app.js`.
+## Change the particle scenes
+The scene order, including the particle word in Skills, is the `SHAPES` list near the middle of `assets/js/app.js`.
 
 ## Update the resume
 Replace `assets/Sachin-Yadav-Resume.pdf`, keeping the same file name.
